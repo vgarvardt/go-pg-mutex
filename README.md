@@ -1,6 +1,63 @@
 # go-pg-mutex
 
-Mutex lock based on PostgreSQL advisory locks for Go
+Mutex lock based on PostgreSQL advisory locks for Go. Can be used to acquire a lock on a resource exclusively across several running instances of the application.
+
+## Install
+
+```bash
+$ go get -u -v github.com/vgarvardt/go-pg-mutex
+```
+
+## PostgreSQL drivers
+
+The store accepts an adapter interface that interacts with the DB. Adapter and implementations are extracted to separate package [`github.com/vgarvardt/go-pg-adapter`](https://github.com/vgarvardt/go-pg-adapter) for easier maintenance.
+
+## Usage example
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/jackc/pgx"
+	"github.com/vgarvardt/go-pg-adapter/pgxadapter"
+	"github.com/vgarvardt/go-pg-mutex"
+)
+
+func main() {
+	pgxConnConfig, _ := pgx.ParseURI(os.Getenv("DB_URI"))
+	pgxConn, _ := pgx.Connect(pgxConnConfig)
+	
+	m, _ := pgmutex.New(pgxadapter.NewConn(pgxConn))
+	
+	useExclusiveResource(m)
+	
+	if !useExclusiveResourceOrNoOp(m) {
+		fmt.Println("Resource is busy, doing nothing")
+	}
+}
+
+func useExclusiveResource(m *pgmutex.PgMutex) {
+	lockName := "my-lock"
+	_ := m.Lock(lockName)
+	defer m.Unlock(lockName)
+
+	// do something with resource exclusively across several instances
+}
+
+func useExclusiveResourceOrNoOp(m *pgmutex.PgMutex) bool {
+	lockName := "my-try-lock"
+	if success, _ := m.TryLock(lockName); !success {
+		return false
+	}
+	defer m.Unlock(lockName)
+
+	// do something with resource exclusively across several instances
+}
+```
 
 ## How to run tests
 

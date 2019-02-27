@@ -2,12 +2,12 @@ package pgmutex
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
 	"time"
 
 	"github.com/jackc/pgx"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/vgarvardt/go-pg-adapter/pgxadapter"
 )
