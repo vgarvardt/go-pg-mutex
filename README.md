@@ -79,13 +79,13 @@ PG_URI=postgres://mutex:mutex@localhost:5432/mutex?sslmode=disable go test -cove
 Copyright (c) 2019 Vladimir Garvardt
 ```
 
-[Build-Status-Url]: https://travis-ci.org/vgarvardt/go-oauth2-pg
-[Build-Status-Image]: https://travis-ci.org/vgarvardt/go-oauth2-pg.svg?branch=master
-[codecov-url]: https://codecov.io/gh/vgarvardt/go-oauth2-pg
-[codecov-image]: https://codecov.io/gh/vgarvardt/go-oauth2-pg/branch/master/graph/badge.svg
-[reportcard-url]: https://goreportcard.com/report/github.com/vgarvardt/go-oauth2-pg
-[reportcard-image]: https://goreportcard.com/badge/github.com/vgarvardt/go-oauth2-pg
-[godoc-url]: https://godoc.org/github.com/vgarvardt/go-oauth2-pg
-[godoc-image]: https://godoc.org/github.com/vgarvardt/go-oauth2-pg?status.svg
+[Build-Status-Url]: https://travis-ci.org/vgarvardt/go-pg-mutex
+[Build-Status-Image]: https://travis-ci.org/vgarvardt/go-pg-mutex.svg?branch=master
+[codecov-url]: https://codecov.io/gh/vgarvardt/go-pg-mutex
+[codecov-image]: https://codecov.io/gh/vgarvardt/go-pg-mutex/branch/master/graph/badge.svg
+[reportcard-url]: https://goreportcard.com/report/github.com/vgarvardt/go-pg-mutex
+[reportcard-image]: https://goreportcard.com/badge/github.com/vgarvardt/go-pg-mutex
+[godoc-url]: https://godoc.org/github.com/vgarvardt/go-pg-mutex
+[godoc-image]: https://godoc.org/github.com/vgarvardt/go-pg-mutex?status.svg
 [license-url]: http://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/npm/l/express.svg
