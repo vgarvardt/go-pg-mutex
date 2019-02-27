@@ -29,6 +29,7 @@ func TestNew(t *testing.T) {
 	require.NoError(t, err)
 
 	pgxConn1, err := pgx.Connect(pgxConnConfig)
+	require.NoError(t, err)
 	pgxConn2, err := pgx.Connect(pgxConnConfig)
 	require.NoError(t, err)
 
