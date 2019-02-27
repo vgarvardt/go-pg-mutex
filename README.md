@@ -1,5 +1,7 @@
 # go-pg-mutex
 
+[![Build][Build-Status-Image]][Build-Status-Url] [![Codecov][codecov-image]][codecov-url] [![ReportCard][reportcard-image]][reportcard-url] [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
+
 Mutex lock based on PostgreSQL advisory locks for Go. Can be used to acquire a lock on a resource exclusively across several running instances of the application.
 
 ## Install
