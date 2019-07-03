@@ -6,6 +6,8 @@ import (
 	"github.com/vgarvardt/go-pg-adapter"
 )
 
+const defaultTableName = "mutex"
+
 // PgMutex is the mutex lock based on PostgreSQL advisory locks
 type PgMutex struct {
 	adapter pgadapter.Adapter
@@ -18,7 +20,7 @@ type PgMutex struct {
 func New(adapter pgadapter.Adapter, options ...Option) (*PgMutex, error) {
 	instance := &PgMutex{
 		adapter:   adapter,
-		tableName: "mutex",
+		tableName: defaultTableName,
 	}
 
 	for _, o := range options {
@@ -70,4 +72,9 @@ func (m *PgMutex) TryLock(name string) (bool, error) {
 		Success bool `db:"success"`
 	}{}
 	return result.Success, m.adapter.SelectOne(&result, fmt.Sprintf("SELECT pg_try_advisory_lock(id) AS success FROM %s WHERE name = $1", m.tableName), name)
+}
+
+// TableName returns currently set mutex table name
+func (m *PgMutex) TableName() string {
+	return m.tableName
 }
