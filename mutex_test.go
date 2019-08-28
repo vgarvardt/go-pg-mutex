@@ -12,20 +12,18 @@ import (
 	"github.com/vgarvardt/go-pg-adapter/pgxadapter"
 )
 
-var uri string
-
-func TestMain(m *testing.M) {
-	uri = os.Getenv("PG_URI")
+func getURI() string {
+	uri := os.Getenv("PG_URI")
 	if uri == "" {
 		fmt.Println("Env variable PG_URI is required to run the tests")
 		os.Exit(1)
 	}
 
-	os.Exit(m.Run())
+	return uri
 }
 
 func TestNew(t *testing.T) {
-	pgxConnConfig, err := pgx.ParseURI(uri)
+	pgxConnConfig, err := pgx.ParseURI(getURI())
 	require.NoError(t, err)
 
 	pgxConn1, err := pgx.Connect(pgxConnConfig)
